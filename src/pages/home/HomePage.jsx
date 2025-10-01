@@ -1,9 +1,11 @@
-import './header.css';
+import '../header.css';
 import './HomePage.css'
 
 function HomePage() {
     return (
         <>
+            <title>Ecommerce Project</title>
+
             <div className="header">
                 <div className="left-section">
                     <a href="index.html" className="header-link">
@@ -77,7 +79,7 @@ function HomePage() {
 
                         <div className="product-spacer"></div>
 
-                        <div class="added-to-cart">
+                        <div className="added-to-cart">
                             <img src="images/icons/checkmark.png" />
                             Added
                         </div>
@@ -105,7 +107,7 @@ function HomePage() {
                             </div>
                         </div>
 
-                        <div class="product-price">
+                        <div className="product-price">
                             $20.95
                         </div>
 
