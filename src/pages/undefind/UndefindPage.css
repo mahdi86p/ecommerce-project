@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.not__found {
+    font-family: fantasy;
+    font-size: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oops__text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: .25s;
+    font-size: 18px;
+    position: absolute;
+    width: 230px;
+    height: 183px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: rgb(71, 71, 71);
+}
+
+.E404 {
+    position: absolute;
+    color: lightgray;
+}
