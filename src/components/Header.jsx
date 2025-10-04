@@ -1,5 +1,7 @@
 import searchIcon from "../assets/images/icons/search-icon.png"
 import cartIcon from "../assets/images/icons/cart-icon.png"
+import mainLogo from "images/logo-white.png";
+
 import { NavLink } from 'react-router'
 import "./Header.css"
 
@@ -9,7 +11,7 @@ function Header() {
             <div className="left-section">
                 <NavLink to="/" className="header-link">
                     <img className="logo"
-                        src="images/logo-white.png" />
+                        src={mainLogo} />
                     <img className="mobile-logo"
                         src="images/mobile-logo-white.png" />
                 </NavLink>
