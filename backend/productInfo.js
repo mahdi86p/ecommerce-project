@@ -5,23 +5,23 @@ const products = [
     productStar: "images/ratings/rating-45.png",
     productRating: 87,
     productPrice: "$10.99",
-    productId : 12312,
+    productId: 7654,
   },
   {
     productImgSrc: "images/products/athletic-cotton-socks-6-pairs.jpg",
     productName: "Black and Gray Athletic Cotton Socks - 6 Pairs",
     productStar: "images/ratings/rating-45.png",
-    productRating: 87,
+    productRating: 50,
     productPrice: "$10.99",
-    productId : 324873298,
+    productId: 1234,
   },
   {
     productImgSrc: "images/products/athletic-cotton-socks-6-pairs.jpg",
     productName: "Black and Gray Athletic Cotton Socks - 6 Pairs",
     productStar: "images/ratings/rating-45.png",
-    productRating: 87,
+    productRating: 90,
     productPrice: "$10.99",
-    productId : 2374678,
+    productId: 7680,
   },
 ];
 

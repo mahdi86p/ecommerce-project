@@ -1,15 +1,21 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import Header from '../../components/Header';
-import CheckmarkIcon from "../../assets/images/icons/checkmark.png"
 import HomeIcon from "../../assets/home-favicon.png"
-import products from "../../../backend/productInfo.js"
 import './HomePage.css'
+// import CheckmarkIcon from "../../assets/images/icons/checkmark.png"
+// import products from '../../../backend/productInfo';
 
 function HomePage() {
-    axios.get("http://localhost:3000/api/products")
-        .then((response) => {
-            console.log(response.data)
-        })
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/api/products")
+            .then((response) => {
+                setProducts(response.data)
+                console.log(response.data)
+            })
+    }, [])
 
     return (
         <>
@@ -23,24 +29,25 @@ function HomePage() {
 
                     {products.map((product) => {
                         return (
-                            <div key={product.productId} className="product-container">
+                            <div key={product.id} className="product-container">
                                 <div className="product-image-container">
-                                    <img src={product.productImgSrc} alt="" className="product-image" />
+                                    <img src={product.image} alt="" className="product-image" />
                                 </div>
-                                <div className="product-name limit-text-to-2-lines">
-                                    {product.productName}
+                                <div className="product-name limit-text-to-2-lines" key="pN">
+                                    {product.name}
                                 </div>
                                 <div className="product-rating-container">
                                     <img
+                                        src={`images/ratings/rating-${product.rating.stars * 10}.png`}
                                         className='product-rating-stars'
-                                        src={product.productStar} />
+                                    />
                                     <div>
-                                        {product.productRating}
+                                        {product.rating.count}
                                     </div>
                                 </div>
 
                                 <div className='product-price'>
-                                    {product.productPrice}
+                                    ${(product.priceCents / 100).toFixed(2)}
                                 </div>
 
                                 <div className="product-quantity-container">
