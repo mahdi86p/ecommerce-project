@@ -5,10 +5,12 @@ import LogoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import "./Header.css"
 
-function Header({ cart }) {
+function Header({cart}) {
     let totalQuantity = 0;
 
-    cart.forEach((item) => {
+    console.log(cart)
+
+    cart.map(item => {
         totalQuantity += item.quantity;
     })
 

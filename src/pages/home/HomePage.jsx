@@ -22,7 +22,7 @@ function HomePage({ cart }) {
             <title>Home</title>
             <link rel="icon" type="image/icon" href={HomeIcon} />
 
-            <Header cart={cart} />
+            <Header cart={cart}/>
 
             <div className="home-page">
                 <div className="products-grid">

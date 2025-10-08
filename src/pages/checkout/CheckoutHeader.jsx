@@ -6,6 +6,8 @@ import CheckOutLock from "../../assets/images/icons/checkout-lock-icon.png"
 function CheckoutHeader() {
     return (
         <div className="checkout-header">
+            <title>Checkout</title>
+            <link rel="icon" href={CheckOutLock} />
             <div className="header-content">
                 <div className="checkout-header-left-section">
                     <Link to="/">
