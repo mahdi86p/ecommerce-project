@@ -12,10 +12,12 @@ function OrdersPage({ cart }) {
 
 
     useEffect(() => {
-        axios.get('/api/orders?expand=products')
-            .then((response) => {
-                setOrders(response.data)
-            })
+        const getOrders = async () => {
+            const response = await axios.get('/api/orders?expand=products')
+            setOrders(response.data)
+        }
+
+        getOrders()
     }, [])
 
     return (

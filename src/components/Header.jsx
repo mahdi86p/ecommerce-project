@@ -8,8 +8,6 @@ import "./Header.css"
 function Header({cart}) {
     let totalQuantity = 0;
 
-    console.log(cart)
-
     cart.map(item => {
         totalQuantity += item.quantity;
     })
