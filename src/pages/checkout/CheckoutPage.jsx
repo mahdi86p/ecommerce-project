@@ -11,16 +11,16 @@ function CheckoutPage({ cart }) {
     const [paymentSummery, setPaymentSummery] = useState(null)
 
     useEffect(() => {
-        axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
-            .then((response) => {
-                setDeliveryOptions(response.data)
-            })
+        const getCheckOutPageData = async () => {
+            let response = await axios.get("/api/delivery-options?expand=estimatedDeliveryTime")
+            setDeliveryOptions(response.data)
 
 
-        axios.get('/api/payment-summary')
-            .then((response) => {
-                setPaymentSummery(response.data)
-            })
+            response = await axios.get('/api/payment-summary')
+            setPaymentSummery(response.data)
+        }
+
+        getCheckOutPageData()
     }, [])
 
     return (
@@ -33,13 +33,13 @@ function CheckoutPage({ cart }) {
                 <div className="page-title">Review your order</div>
 
                 <div className="checkout-grid">
-                    <OrderSummery 
-                        cart={cart} 
+                    <OrderSummery
+                        cart={cart}
                         deliveryOptions={deliveryOptions}
                     />
-                
-                    <PaymentSummery 
-                        paymentSummery={paymentSummery}/>
+
+                    <PaymentSummery
+                        paymentSummery={paymentSummery} />
                 </div>
             </div>
         </>
