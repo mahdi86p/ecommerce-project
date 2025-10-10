@@ -1,5 +1,5 @@
 import "./UndefindPage.css"
-import Header from "../../components/header/Header";
+// import Header from "../../components/header/Header";
 import { useEffect, useState } from "react";
 
 function UndefindPage() {

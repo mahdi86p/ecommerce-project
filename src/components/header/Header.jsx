@@ -11,7 +11,7 @@ function Header({cart}) {
     cart.map(item => {
         totalQuantity += item.quantity;
     })
-
+    
     return (
         <div className="header">
             <div className="left-section">

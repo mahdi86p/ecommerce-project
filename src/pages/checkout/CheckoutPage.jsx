@@ -29,7 +29,7 @@ function CheckoutPage({ cart }) {
             <link rel="icon" type="image/icon" href="./cart-favicon.png" />
 
             <div className="checkout-page">
-                <CheckoutHeader></CheckoutHeader>
+                <CheckoutHeader cart={cart}></CheckoutHeader>
                 <div className="page-title">Review your order</div>
 
                 <div className="checkout-grid">
