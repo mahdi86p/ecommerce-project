@@ -1,6 +1,6 @@
 import "./UndefindPage.css"
+import Header from "../../components/header/Header";
 import { useEffect, useState } from "react";
-import Header from "../../components/Header.jsx";
 
 function UndefindPage() {
     const Oops = ['O', 'o', 'p', 's', '😕', '!', ' ', 'P', 'a', 'g', 'e', ' ', 'n', 'o', 't', ' ', 'F', 'o', 'u', 'n', 'd', '!']
@@ -38,7 +38,6 @@ function UndefindPage() {
 
     return (
         <>
-            <Header></Header>
             <div className="not__found">
                 <div className="E404">
                     {errorText}
