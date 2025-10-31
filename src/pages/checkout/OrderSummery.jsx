@@ -15,7 +15,7 @@ function OrderSummery({ deliveryOptions, cart, loadCart }) {
                         <DeliveryDate selectedDeliveryOption={selectedDeliveryOption} />
 
                         <div className="cart-item-details-grid">
-                            <CartItemDetails cartItem={cartItem}></CartItemDetails>
+                            <CartItemDetails cartItem={cartItem} loadCart={loadCart}/>
                             <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart={loadCart} />
                         </div>
                     </div>
