@@ -40,7 +40,8 @@ function CheckoutPage({ cart, loadCart }) {
                     />
 
                     <PaymentSummery
-                        paymentSummery={paymentSummery} />
+                        paymentSummery={paymentSummery} 
+                        loadCart={loadCart}/>
                 </div>
             </div>
         </>
