@@ -6,7 +6,7 @@ import PaymentSummery from "./PaymentSummery"
 import "./CheckoutPage.css"
 import "./CheckoutHeader.css"
 
-function CheckoutPage({ cart }) {
+function CheckoutPage({ cart, loadCart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
     const [paymentSummery, setPaymentSummery] = useState(null)
 
@@ -21,7 +21,7 @@ function CheckoutPage({ cart }) {
         }
 
         getCheckOutPageData()
-    }, [])
+    }, [cart])
 
     return (
         <>
@@ -36,6 +36,7 @@ function CheckoutPage({ cart }) {
                     <OrderSummery
                         cart={cart}
                         deliveryOptions={deliveryOptions}
+                        loadCart={loadCart}
                     />
 
                     <PaymentSummery

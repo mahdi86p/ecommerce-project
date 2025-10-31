@@ -2,7 +2,7 @@ import DeliveryOptions from "./DeliveryOptions";
 import CartItemDetails from "../../components/CartItemDetails";
 import DeliveryDate from "../../components/DeliveryDate";
 
-function OrderSummery({ deliveryOptions, cart }) {
+function OrderSummery({ deliveryOptions, cart, loadCart }) {
     return (
         <div className="order-summary">
             {deliveryOptions.length > 0 && cart.map((cartItem) => {
@@ -12,11 +12,11 @@ function OrderSummery({ deliveryOptions, cart }) {
 
                 return (
                     <div key={cartItem.productId} className="cart-item-container">
-                        <DeliveryDate selectedDeliveryOption={selectedDeliveryOption}/>
+                        <DeliveryDate selectedDeliveryOption={selectedDeliveryOption} />
 
                         <div className="cart-item-details-grid">
                             <CartItemDetails cartItem={cartItem}></CartItemDetails>
-                            <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} />
+                            <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart={loadCart} />
                         </div>
                     </div>
                 );

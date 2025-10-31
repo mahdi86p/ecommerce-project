@@ -7,6 +7,7 @@ function Product({ product, loadCart }) {
     const [quantity, setQuantity] = useState(1);
 
     const addToCart = async () => {
+        
         await axios.post('/api/cart-items', {
             productId: product.id,
             quantity
@@ -14,6 +15,8 @@ function Product({ product, loadCart }) {
             // Request body
         })
         // create data in backend and send information to backend
+        // each request has a type and url path
+        // both of these determinr what the backend will do
 
         await loadCart();
     }
@@ -76,5 +79,5 @@ function Product({ product, loadCart }) {
         </div>
     )
 }
-
+ 
 export default Product;
