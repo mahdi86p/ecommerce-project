@@ -105,3 +105,11 @@ select:focus,
 input:focus {
   outline: 2px solid rgb(25, 135, 84);
 }
+
+.addButton{
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+  background: white;
+}
