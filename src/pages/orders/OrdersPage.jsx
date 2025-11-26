@@ -16,6 +16,8 @@ function OrdersPage({ cart ,  loadCart}) {
         getOrders()
     }, [])
 
+    
+
     return (
         <>
             <link rel="icon" type="image/icon" href="./orders-favicon.png" />

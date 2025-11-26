@@ -1,28 +1,32 @@
 import OrderHeader from './OrderHeader';
 import OrderDetailsGrid from './OrderDetailsGrid';
-import { useState , useEffect} from "react";
+import axios from 'axios';
 
-function OrdersGrid({ orders , cart , loadCart}) {
-    
-    let [quantities, setQuantityes] = useState({})
+function OrdersGrid({ orders, cart, loadCart }) {
 
-    useEffect(() => {
-        console.log("Quantity changed: ", quantities);
-        console.log("cart: " + cart)
-    }, [quantities]);
-    
     return (
         <div className="orders-grid">
             {orders.map((order) => {
-                async function AddProduct() {
-                    setQuantityes(quantity => ++quantity)
+                console.log(order, cart)
+                const addToCart = async (product) => {
+                    await axios.post('/api/cart-items', {
+                        productId: product.id,
+                        quantity: product.quantity
+                        // quantity || quantity: quantity
+                        // Request body
+                    })
+                    // create data in backend and send information to backend
+                    // each request has a type and url path
+                    // both of these determinr what the backend will do
+
+                    await loadCart();
                 }
-                
+
                 return (
                     <div key={order.id} className="order-container">
                         <OrderHeader order={order}></OrderHeader>
                         <OrderDetailsGrid order={order}></OrderDetailsGrid>
-                        <button onClick={AddProduct} className="addButton">Add to Cart</button>
+                        <button onClick={addToCart} className="addButton">Add to Cart</button>
                     </div>
                 );
             })}

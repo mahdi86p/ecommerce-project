@@ -1,0 +1,10 @@
+.page-title {
+    margin-top: 300px;
+}
+
+@media screen and (max-width:1000px) {
+    .page-title {
+        margin-top: 800px;
+    }
+
+}

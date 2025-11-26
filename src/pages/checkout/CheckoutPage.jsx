@@ -1,26 +1,31 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import CheckoutHeader from "./CheckoutHeader";
-import OrderSummery from "./OrderSummery";
-import PaymentSummery from "./PaymentSummery"
+import OrderSummary from "./OrderSummery";
+import PaymentSummary from "./PaymentSummery"
 import "./CheckoutPage.css"
 import "./CheckoutHeader.css"
 
 function CheckoutPage({ cart, loadCart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
-    const [paymentSummery, setPaymentSummery] = useState(null)
+    const [paymentSummary, setPaymentSummary] = useState(null)
 
     useEffect(() => {
         const getCheckOutPageData = async () => {
             let response = await axios.get("/api/delivery-options?expand=estimatedDeliveryTime")
             setDeliveryOptions(response.data)
-
-
-            response = await axios.get('/api/payment-summary')
-            setPaymentSummery(response.data)
         }
 
         getCheckOutPageData()
+    }, [])
+
+    useEffect(() => {
+        const getPaymentSummaryPageData = async () => {
+            let response = await axios.get('/api/payment-summary')
+            setPaymentSummary(response.data)
+        }
+
+        getPaymentSummaryPageData()
     }, [cart])
 
     return (
@@ -33,15 +38,15 @@ function CheckoutPage({ cart, loadCart }) {
                 <div className="page-title">Review your order</div>
 
                 <div className="checkout-grid">
-                    <OrderSummery
+                    <OrderSummary
                         cart={cart}
                         deliveryOptions={deliveryOptions}
                         loadCart={loadCart}
                     />
 
-                    <PaymentSummery
-                        paymentSummery={paymentSummery} 
-                        loadCart={loadCart}/>
+                    <PaymentSummary
+                        paymentSummary={paymentSummary}
+                        loadCart={loadCart} />
                 </div>
             </div>
         </>
