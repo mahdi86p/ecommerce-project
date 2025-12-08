@@ -20,12 +20,16 @@ function App() {
     loadCart()
   }, [])
 
+  window.axios = axios;
+
+  // axios.post('/api/reset')
+
   return (
     <>
       <Routes>
-        <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
-        <Route path="checkout" element={<CheckoutPage cart={cart} loadCart={loadCart}/>} />
-        <Route path="orders" element={<OrdersPage cart={cart} loadCart={loadCart}/>} />
+        <Route index element={<HomePage cart={cart} loadCart={loadCart} />} />
+        <Route path="checkout" element={<CheckoutPage cart={cart} loadCart={loadCart} />} />
+        <Route path="orders" element={<OrdersPage cart={cart} loadCart={loadCart} />} />
         <Route path="tracking/:orderId/:productId" element={<TrackingPage cart={cart} />} />
         <Route path="*" element={<UndefindPage cart={cart} />} />
       </Routes>
