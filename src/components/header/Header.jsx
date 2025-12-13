@@ -4,14 +4,30 @@ import CartIcon from "../../assets/images/icons/cart-icon.png"
 import LogoWhite from '../../assets/images/logo-white.png';
 import MobileLogoWhite from '../../assets/images/mobile-logo-white.png';
 import "./Header.css"
+import { useState } from 'react';
+import {useNavigate } from 'react-router';
 
-function Header({cart}) {
+function Header({ cart , search}) {
     let totalQuantity = 0;
+    let navigate = useNavigate();
+    const [InputVal, setInputVal] = useState("")
 
     cart.map(item => {
         totalQuantity += item.quantity;
     })
-    
+
+    function InputManagment(e) {
+        setInputVal(e.target.value)
+        if(e.key == "Enter"){
+            searchHandler()
+        }
+    }
+
+    function searchHandler () {
+        navigate(`/?search=${InputVal ? InputVal : search}`)
+    }
+
+
     return (
         <div className="header">
             <div className="left-section">
@@ -24,9 +40,9 @@ function Header({cart}) {
             </div>
 
             <div className="middle-section">
-                <input className="search-bar" type="text" placeholder="Search" />
+                <input className="search-bar" type="text" placeholder="Search" onKeyDown={InputManagment} />
 
-                <button className="search-button">
+                <button className="search-button" onClick={searchHandler}>
                     <img className="search-icon" src={SearchIcon} />
                 </button>
             </div>

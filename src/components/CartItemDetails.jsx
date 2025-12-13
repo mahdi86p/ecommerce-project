@@ -35,13 +35,17 @@ function CartItemDetails({ cartItem, loadCart }) {
     }
 
     const updateQuantityKey = (event) => {
-        if(event.key == "Enter"){
+        const keyPressed = event.key;
+
+        if(keyPressed == "Enter"){
             updateQuantity()
         }
-        else if(event.key == "Escape"){
+        
+        else if(keyPressed == "Escape"){
             setQuantity(cartItem.quantity)
             setIsUpdatingQuantity(false)
         }
+
         else{
             return
         }
