@@ -34,7 +34,7 @@ function Product({ product, loadCart }) {
     return (
         <div className="product-container">
             <div className="product-image-container">
-                <img src={product.image} alt="" className="product-image" />
+                <img src={product.image} data-testid="product-image" className="product-image" />
             </div>
             <div className="product-name limit-text-to-2-lines" key="pN">
                 {product.name}
@@ -43,13 +43,14 @@ function Product({ product, loadCart }) {
                 <img
                     src={`images/ratings/rating-${product.rating.stars * 10}.png`}
                     className='product-rating-stars'
+                    data-testid="product-rating-stars-image"
                 />
                 <div>
                     {product.rating.count}
                 </div>
             </div>
 
-            <div className='product-price'>
+            <div className='product-price' data-testid="product-price">
                 {formatMoney(product.priceCents)}
             </div>
 
@@ -70,7 +71,7 @@ function Product({ product, loadCart }) {
 
             <div className="product-spacer"></div>
 
-            <div className="added-to-cart" style={{opacity : showAddedMessage ? 1 : 0}}>
+            <div className="added-to-cart" style={{ opacity: showAddedMessage ? 1 : 0 }}>
                 <img src="images/icons/checkmark.png" />
                 Added
             </div>

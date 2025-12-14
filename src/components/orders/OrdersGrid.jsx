@@ -2,12 +2,11 @@ import OrderHeader from './OrderHeader';
 import OrderDetailsGrid from './OrderDetailsGrid';
 import axios from 'axios';
 
-function OrdersGrid({ orders, cart, loadCart }) {
+function OrdersGrid({ orders, loadCart }) {
 
     return (
         <div className="orders-grid">
             {orders.map((order) => {
-                console.log(order, cart)
                 const addToCart = async (product) => {
                     await axios.post('/api/cart-items', {
                         productId: product.id,
