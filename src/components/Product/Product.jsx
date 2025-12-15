@@ -77,6 +77,7 @@ function Product({ product, loadCart }) {
             </div>
 
             <button className="add-to-cart-button button-primary"
+                data-test-id="add-to-cart-button"
                 onClick={() => addToCart(product)}>
                 Add to Cart
             </button>
