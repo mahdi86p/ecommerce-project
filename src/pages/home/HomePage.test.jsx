@@ -6,6 +6,8 @@ import { MemoryRouter } from 'react-router';
 import axios from 'axios';
 import HomePage from './HomePage';
 
+import userEvent from '@testing-library/user-event';
+
 vi.mock('axios')
 
 // diffrent of (npx vitest) and (npx run vitest)
@@ -23,8 +25,15 @@ vi.mock('axios')
 describe("HomePage Component", () => {
     let loadCart;
 
-    beforeEach(() => {
+    beforeEach(async () => {
         loadCart = vi.fn()
+
+        // same thing as get but it will wait until 
+        // it finds this element.
+        // wait for homepage to finish loading
+        // this is useful when our component 
+        // needs to load something and we need
+        // to wait for it to load.
 
         axios.get.mockImplementation(async (urlPath) => {
             if (urlPath === '/api/products') {
@@ -68,15 +77,7 @@ describe("HomePage Component", () => {
         // to run use effect and then load the products
         // and then update the state
 
-
         const productContainers = await screen.findAllByTestId('product-container')
-
-        // same thing as get but it will wait until 
-        // it finds this element.
-        // wait for homepage to finish loading
-        // this is useful when our component 
-        // needs to load something and we need
-        // to wait for it to load.
 
         expect(productContainers.length).toBe(2)
 
@@ -92,4 +93,44 @@ describe("HomePage Component", () => {
 
     })
     // check homepage display the products correctly
+
+    it('Add a product to cart', async () => {
+
+        render(
+            <MemoryRouter>
+                <HomePage cart={[]} loadCart={loadCart} />
+            </MemoryRouter>
+        )
+
+        const user = userEvent.setup()
+
+        const productContainers = await screen.findAllByTestId('product-container')
+        // Find all of products container
+
+        const firstBtn = within(productContainers[0]).getByTestId('add-to-cart-button')
+        await user.click(firstBtn)
+        // Get add to cart button in first container , Click the first add to cart button
+
+        expect(axios.post).toHaveBeenNthCalledWith(1,
+            "/api/cart-items",
+            {
+                "productId": "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+                "quantity": 1,
+            },
+        )
+
+        const secondBtn = within(productContainers[1]).getByTestId('add-to-cart-button')
+        await user.click(secondBtn)
+        // Get add to cart button in second container , Click the second add to cart button
+
+        expect(axios.post).toHaveBeenNthCalledWith(2,
+            "/api/cart-items",
+            {
+                "productId": "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+                "quantity": 1,
+            },
+        )
+
+        expect(loadCart).toHaveBeenCalledTimes(2)
+    })
 })
