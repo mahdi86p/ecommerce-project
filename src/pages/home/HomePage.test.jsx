@@ -94,8 +94,10 @@ describe("HomePage Component", () => {
     })
     // check homepage display the products correctly
 
-    it('Add a product to cart', async () => {
 
+    // Test add product to cart and buttons work
+
+    it('Add a product to cart', async () => {
         render(
             <MemoryRouter>
                 <HomePage cart={[]} loadCart={loadCart} />
@@ -107,6 +109,10 @@ describe("HomePage Component", () => {
         const productContainers = await screen.findAllByTestId('product-container')
         // Find all of products container
 
+        let firstQuantitySelector = await within(productContainers[0]).findByTestId('quantity-selector')
+
+        await user.selectOptions(firstQuantitySelector, '2')
+
         const firstBtn = within(productContainers[0]).getByTestId('add-to-cart-button')
         await user.click(firstBtn)
         // Get add to cart button in first container , Click the first add to cart button
@@ -115,9 +121,14 @@ describe("HomePage Component", () => {
             "/api/cart-items",
             {
                 "productId": "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-                "quantity": 1,
+                "quantity": 2
             },
         )
+        // test product id and quantity
+
+        let secondQuantitySelector = await within(productContainers[1]).findByTestId('quantity-selector')
+
+        await user.selectOptions(secondQuantitySelector, '3')
 
         const secondBtn = within(productContainers[1]).getByTestId('add-to-cart-button')
         await user.click(secondBtn)
@@ -127,9 +138,10 @@ describe("HomePage Component", () => {
             "/api/cart-items",
             {
                 "productId": "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-                "quantity": 1,
+                "quantity": 3
             },
         )
+        // test product id and quantity
 
         expect(loadCart).toHaveBeenCalledTimes(2)
     })
