@@ -3,7 +3,11 @@ import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import PaymentSummary from "./PaymentSummery.jsx"
 // import axios from "axios"
-vi.mock("axios")
+
+import userEvent from '@testing-library/user-event';
+
+// vi.mock("axios")
+// vi.mock('')
 
 
 describe("Payment Summary Component", () => {
@@ -23,10 +27,8 @@ describe("Payment Summary Component", () => {
         loadCart = vi.fn()
     })
 
-    // test Payment Summary
-
+    // test display dollar amounts
     it("display dollar amounts", async () => {
-        // render
         render(
             <MemoryRouter>
                 <PaymentSummary
@@ -62,4 +64,21 @@ describe("Payment Summary Component", () => {
             screen.getByTestId("totalCostCents")
         ).toHaveTextContent("$425.83")
     })
+
+    // test Place order work?
+    it("Place Order Button work", () => {
+        render(
+            <MemoryRouter>
+                <PaymentSummary
+                    paymentSummary={paymentSummary}
+                    loadCart={loadCart}
+                />
+            </MemoryRouter>
+        )
+
+        const user = userEvent.setup();
+        const placeOrderBtn = screen.getByTestId("place-order-button");
+        user.click(placeOrderBtn);
+    })
+
 })
