@@ -2,17 +2,16 @@ import { it, expect, describe, vi, beforeEach } from "vitest"
 import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import PaymentSummary from "./PaymentSummery.jsx"
-// import axios from "axios"
-
 import userEvent from '@testing-library/user-event';
+import axios from "axios"
+import Location from "../../components/Location/Location.jsx";
 
-// vi.mock("axios")
-// vi.mock('')
-
+vi.mock("axios")
 
 describe("Payment Summary Component", () => {
     let paymentSummary;
     let loadCart;
+    let user;
 
     beforeEach(() => {
         paymentSummary = {
@@ -25,6 +24,7 @@ describe("Payment Summary Component", () => {
         }
 
         loadCart = vi.fn()
+        user = userEvent.setup()
     })
 
     // test display dollar amounts
@@ -34,7 +34,9 @@ describe("Payment Summary Component", () => {
                 <PaymentSummary
                     paymentSummary={paymentSummary}
                     loadCart={loadCart}
-                />
+                >
+
+                </PaymentSummary>
             </MemoryRouter>
         )
 
@@ -65,20 +67,27 @@ describe("Payment Summary Component", () => {
         ).toHaveTextContent("$425.83")
     })
 
-    // test Place order work?
-    it("Place Order Button work", () => {
+    // Place order button Does work or notand and check the Location?
+
+    it("Place Order Button work and check the Location", async () => {
+
+
         render(
             <MemoryRouter>
                 <PaymentSummary
                     paymentSummary={paymentSummary}
                     loadCart={loadCart}
                 />
+                <Location />
             </MemoryRouter>
         )
 
-        const user = userEvent.setup();
         const placeOrderBtn = screen.getByTestId("place-order-button");
-        user.click(placeOrderBtn);
+        await user.click(placeOrderBtn);
+
+        expect(axios.post).toHaveBeenCalledWith('/api/orders');
+        expect(loadCart).toHaveBeenCalled();
+        expect(screen.getByTestId('url-path')).toHaveTextContent('/orders');
     })
 
 })

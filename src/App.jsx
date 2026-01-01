@@ -22,8 +22,6 @@ function App() {
 
   window.axios = axios;
 
-  // axios.post('/api/reset')
-
   return (
     <>
       <Routes>

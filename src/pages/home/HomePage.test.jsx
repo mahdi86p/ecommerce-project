@@ -109,7 +109,7 @@ describe("HomePage Component", () => {
         const productContainers = await screen.findAllByTestId('product-container')
         // Find all of products container
 
-        let firstQuantitySelector = await within(productContainers[0]).findByTestId('quantity-selector')
+        const firstQuantitySelector = await within(productContainers[0]).findByTestId('quantity-selector')
 
         await user.selectOptions(firstQuantitySelector, '2')
 
@@ -126,7 +126,7 @@ describe("HomePage Component", () => {
         )
         // test product id and quantity
 
-        let secondQuantitySelector = await within(productContainers[1]).findByTestId('quantity-selector')
+        const secondQuantitySelector = await within(productContainers[1]).findByTestId('quantity-selector')
 
         await user.selectOptions(secondQuantitySelector, '3')
 
