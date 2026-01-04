@@ -8,7 +8,7 @@ import Location from "../../components/Location/Location.jsx";
 
 vi.mock("axios")
 
-describe("Payment Summary Component", () => {
+describe("Test Payment Summery", () => {
     let paymentSummary;
     let loadCart;
     let user;
@@ -70,8 +70,6 @@ describe("Payment Summary Component", () => {
     // Place order button Does work or notand and check the Location?
 
     it("Place Order Button work and check the Location", async () => {
-
-
         render(
             <MemoryRouter>
                 <PaymentSummary
