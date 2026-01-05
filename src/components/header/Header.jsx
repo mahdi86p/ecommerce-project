@@ -7,7 +7,7 @@ import "./Header.css"
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-function Header({ cart, searchHandler }) {
+function Header({ cart }) {
     let totalQuantity = 0;
     let navigate = useNavigate();
     const [InputVal, setInputVal] = useState("")
@@ -16,15 +16,17 @@ function Header({ cart, searchHandler }) {
         totalQuantity += item.quantity;
     })
 
+    function searchHandler(searchText) {
+        navigate(searchText)
+    }
+
     function SearchBtnManagment() {
         searchHandler(`/?search=${InputVal}`)
-        navigate(`/?search=${InputVal}`)
     }
 
     function handleKeyDown(e) {
         if (e.key === "Enter") {
             searchHandler(`/?search=${InputVal}`)
-            navigate(`/?search=${InputVal}`)
         }
     }
 
